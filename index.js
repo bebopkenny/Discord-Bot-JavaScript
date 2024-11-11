@@ -10,6 +10,7 @@ console.log("Token:", token);
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection(); // Collection for storing bot commands
+client.cooldowns = new Collection(); // Initialize cooldowns collection after client is created
 
 // Load command files directly from the 'commands' directory
 const commandsPath = path.join(__dirname, 'commands');
@@ -40,5 +41,6 @@ for (const file of eventFiles) {
         client.on(event.name, (...args) => event.execute(...args));
     }
 }
+
 // Log in to Discord with the token
 client.login(token);
